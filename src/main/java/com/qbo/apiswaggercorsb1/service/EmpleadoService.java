@@ -1,0 +1,35 @@
+package com.qbo.apiswaggercorsb1.service;
+
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.qbo.apiswaggercorsb1.model.Empleado;
+import com.qbo.apiswaggercorsb1.repository.EmpleadoRepository;
+
+
+
+@Service
+public class EmpleadoService {
+
+	@Autowired
+	private EmpleadoRepository empleadoRepository;
+	
+	public HashMap<String, String> registrarEmpleado(Empleado empleado){
+		
+		empleadoRepository.registrarEmpleado(empleado.getNombre(), empleado.getApellido());
+		
+		HashMap<String , String> respuesta=new HashMap<String,String>();
+		respuesta.put("mensaje","Elemento registrado correctamente");
+		return respuesta;
+		
+	}
+	
+	public Empleado autenticarEmpleado(String usuario, String password) {
+		return empleadoRepository.autenticarEmpleado(usuario, password);
+		
+	}
+	
+	
+}
